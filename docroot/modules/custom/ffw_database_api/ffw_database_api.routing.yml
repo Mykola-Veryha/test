@@ -5,3 +5,10 @@ ffw_database_api.count_view:
     _title: 'Statistics'
   requirements:
     _access: 'TRUE'
+ffw_database_api.load_ffw_statistics:
+  path: '/load_ffw_statistics/{entity_id}'
+  defaults:
+    _controller: '\Drupal\ffw_database_api\Controller\StatisticsController:loadStatistics'
+    _title: 'Load statistics'
+  requirements:
+    _access: 'TRUE'

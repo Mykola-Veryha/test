@@ -14,6 +14,7 @@ function ffw_database_api_node_view(
 ) {
   if (!$node->isNew() && $view_mode == 'full' && node_is_page($node) && empty($node->in_preview)) {
     $build['#attached']['library'][] = 'ffw_database_api/drupal.statistics';
+    $build['#attached']['library'][] = 'ffw_database_api/load_statistics';
     $settings = [
       'data' => [
         'nid' => $node->id()
@@ -37,6 +38,8 @@ function ffw_database_api_theme($existing, $type, $theme, $path): array {
         'total' => NULL,
         'last_view_date' => NULL,
         'username' => NULL,
+        'nid' => NULL,
+        'blur' => NULL,
       ],
     ],
   ];

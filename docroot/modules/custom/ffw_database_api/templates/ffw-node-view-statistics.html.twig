@@ -1,6 +1,14 @@
-<p>
-  {{ 'Number of views'|t }}: {{ today }} today / {{ total}} total
-</p>
-<p>
-  Last viewed by {{ username }} at {{ last_view_date }}
-</p>
+<div class="ffw-entity-statistics" data-statistics-nid="{{ nid }}">
+  <p>
+    {{ 'Number of views'|t }}:
+    <span data-statistics-name="value" style="filter: blur(4px)"> {{ today }}  </span> today
+    /
+    <span data-statistics-name="value" style="filter: blur(4px)"> {{ total }} </span> total
+  </p>
+  <p>
+    {{ 'Last viewed by'|t }} <span data-statistics-name="value" style="filter: blur(4px)"> {{ username }} </span>
+    at
+    <span data-statistics-name="value" style="filter: blur(4px)"> {{ last_view_date }} </span>
+  </p>
+</div>
+
