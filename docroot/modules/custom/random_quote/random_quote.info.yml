@@ -1,0 +1,5 @@
+name: FFW Random Quotes
+type: module
+description: 'FFW Random Quotes'
+package: Custom
+core_version_requirement: ^9

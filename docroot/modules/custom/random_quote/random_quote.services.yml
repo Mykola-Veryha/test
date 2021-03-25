@@ -1,0 +1,4 @@
+services:
+  random_quote.client:
+    class: 'Drupal\random_quote\Service\RandomQuotes'
+    arguments: ['@http_client']
