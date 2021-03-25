@@ -14,6 +14,14 @@ function ffw_database_api_schema(): array {
         'not null' => TRUE,
         'default' => 0,
       ],
+      'todaycount' => [
+        'description' => 'The total number of times the entity has been viewed today.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'big',
+      ],
       'totalcount' => [
         'description' => 'The total number of times the entity has been viewed.',
         'type' => 'int',

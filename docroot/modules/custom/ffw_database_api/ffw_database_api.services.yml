@@ -4,4 +4,4 @@ services:
     arguments: ['@database', '@current_user', '@request_stack']
   ffw_database_api.build_statistics:
     class: 'Drupal\ffw_database_api\Render\NodeStatistics'
-    arguments: ['@ffw_database_api.statistics_storage']
+    arguments: ['@ffw_database_api.statistics_storage', '@entity_type.manager', '@current_user']

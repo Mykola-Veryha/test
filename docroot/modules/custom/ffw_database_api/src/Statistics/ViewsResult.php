@@ -17,8 +17,14 @@ class ViewsResult {
    */
   protected $timestamp;
 
-  public function __construct($total_count, $timestamp) {
+  /**
+   * @var int
+   */
+  protected $todayCount;
+
+  public function __construct($total_count, $today_count, $timestamp) {
     $this->totalCount = (int) $total_count;
+    $this->todayCount = (int) $today_count;
     $this->timestamp = (int) $timestamp;
   }
 
@@ -29,6 +35,15 @@ class ViewsResult {
    */
   public function getTotalCount(): int {
     return $this->totalCount;
+  }
+
+  /**
+   * Today number of times the entity has been viewed.
+   *
+   * @return int
+   */
+  public function getTodayCount(): int {
+    return $this->todayCount;
   }
 
   /**

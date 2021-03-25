@@ -77,9 +77,11 @@ class EntityDatabaseStorage implements StorageInterface {
         ->key('entity_id', $id)
         ->fields([
           'totalcount' => 1,
+          'todaycount' => 1,
           'timestamp' => $this->getRequestTime(),
         ])
         ->expression('totalcount', 'totalcount + 1')
+        ->expression('todaycount', 'todaycount + 1')
         ->execute();
     }
     catch (Exception $e) {
@@ -95,13 +97,14 @@ class EntityDatabaseStorage implements StorageInterface {
   public function fetchViews($ids): array {
     $views = $this->connection
       ->select('ffw_entity_views_counter', 'vc')
-      ->fields('vc', ['totalcount', 'timestamp'])
+      ->fields('vc', ['totalcount', 'todaycount', 'timestamp'])
       ->condition('entity_id', $ids, 'IN')
       ->execute()
       ->fetchAll();
     foreach ($views as $id => $view) {
-      $views[$id] = new ViewsResult($view->totalcount, $view->timestamp);
+      $views[$id] = new ViewsResult($view->totalcount, $view->todaycount, $view->timestamp);
     }
+
     return $views;
   }
 
@@ -135,8 +138,8 @@ class EntityDatabaseStorage implements StorageInterface {
   /**
    * {@inheritdoc}
    */
-  public function fetchLastView($id) {
-    $views = $this->fetchLastViews([$id]);
+  public function fetchLastView(int $id, int $uid = NULL) {
+    $views = $this->fetchLastViews([$id], $uid);
 
     return reset($views);
   }
