@@ -1,0 +1,7 @@
+services:
+  ffw_database_api.statistics_storage:
+    class: 'Drupal\ffw_database_api\Statistics\EntityDatabaseStorage'
+    arguments: ['@database', '@current_user', '@request_stack']
+  ffw_database_api.build_statistics:
+    class: 'Drupal\ffw_database_api\Render\NodeStatistics'
+    arguments: ['@ffw_database_api.statistics_storage']

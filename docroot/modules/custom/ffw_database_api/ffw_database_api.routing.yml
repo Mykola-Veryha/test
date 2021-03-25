@@ -1,0 +1,7 @@
+ffw_database_api.count_view:
+  path: '/ffw_statistics'
+  defaults:
+    _controller: '\Drupal\ffw_database_api\Controller\StatisticsController:countView'
+    _title: 'Statistics'
+  requirements:
+    _access: 'TRUE'

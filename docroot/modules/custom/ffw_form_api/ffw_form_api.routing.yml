@@ -1,0 +1,8 @@
+ffw_form_api.site_name_config_form:
+  path: '/custom-site-settings'
+  defaults:
+    _form: '\Drupal\ffw_form_api\Form\SiteNameConfigForm'
+    _title: 'Site name'
+  requirements:
+    _permission: 'administer mymodule'
+  _admin_route: 'TRUE'

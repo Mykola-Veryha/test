@@ -1,0 +1,68 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function ffw_database_api_schema(): array {
+  $schema['ffw_entity_views_counter'] = [
+    'description' => 'Access statistics for entities.',
+    'fields' => [
+      'entity_id' => [
+        'description' => 'The entity.id for these statistics.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'totalcount' => [
+        'description' => 'The total number of times the entity has been viewed.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'big',
+      ],
+      'timestamp' => [
+        'description' => 'The most recent time the entity has been viewed.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['entity_id'],
+  ];
+
+  $schema['ffw_entity_last_view'] = [
+    'description' => 'Last access statistics for entities.',
+    'fields' => [
+      'entity_id' => [
+        'description' => 'The entity.id for these statistics.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'uid' => [
+        'description' => 'The user.id for these statistics.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'timestamp' => [
+        'description' => 'The most recent time the entity has been viewed.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['entity_id', 'uid'],
+    'indexes' => [
+      'uid' => ['entity_id', 'uid'],
+    ],
+  ];
+
+  return $schema;
+}

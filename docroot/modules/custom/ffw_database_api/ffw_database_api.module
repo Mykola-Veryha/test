@@ -1,0 +1,43 @@
+<?php
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for node entities.
+ */
+function ffw_database_api_node_view(
+  array &$build,
+  EntityInterface $node,
+  EntityViewDisplayInterface $display,
+  $view_mode
+) {
+  if (!$node->isNew() && $view_mode == 'full' && node_is_page($node) && empty($node->in_preview)) {
+    $build['#attached']['library'][] = 'ffw_database_api/drupal.statistics';
+    $settings = [
+      'data' => [
+        'nid' => $node->id()
+      ],
+      'url' => '/ffw_statistics',
+    ];
+    $build['#attached']['drupalSettings']['ffwStatistics'] = $settings;
+    $build['statistics'] = Drupal::service('ffw_database_api.build_statistics')->build($node->id());
+    $build['statistics']['#weight'] = -10;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ffw_database_api_theme($existing, $type, $theme, $path): array {
+  return [
+    'ffw_node_view_statistics' => [
+      'variables' => [
+        'today' => NULL,
+        'total' => NULL,
+        'last_view_date' => NULL,
+        'username' => NULL,
+      ],
+    ],
+  ];
+}

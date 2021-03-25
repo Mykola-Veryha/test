@@ -1,0 +1,8 @@
+ffw_drupal_api.publish_control:
+  path: '/publish_control'
+  defaults:
+    _form: '\Drupal\ffw_drupal_api\Form\ArticleActionForm'
+    _title: 'Publish control'
+  requirements:
+    _permission: 'administer content types'
+  _admin_route: 'TRUE'
