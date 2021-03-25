@@ -28,6 +28,22 @@ function ffw_database_api_node_view(
 }
 
 /**
+ * Implements hook_cron().
+ */
+function ffw_database_api_cron() {
+  $statistics_timestamp = Drupal::state()->get('ffw_statistics.day_timestamp', 0);
+  $request_time = Drupal::requestStack()->getCurrentRequest()->server->get('REQUEST_TIME');
+
+  $is_first_hour_since_midnight = $request_time % 86400 < 3600;
+  if (($request_time - $statistics_timestamp) >= 86400 && $is_first_hour_since_midnight) {
+    Drupal::state()->set('ffw_statistics.day_timestamp', $request_time);
+    Drupal::database()->update('ffw_entity_views_counter')
+      ->fields(['todaycount' => 0])
+      ->execute();
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function ffw_database_api_theme($existing, $type, $theme, $path): array {
