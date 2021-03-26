@@ -1,0 +1,22 @@
+uuid: ed8405b3-a8f2-4f91-9a8a-84160f015c8c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: atricle_path
+label: 'Atricle path'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  585a99a3-9fd9-4ff2-87ef-cc7ded32b92d:
+    id: node_type
+    bundles:
+      article: article
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 585a99a3-9fd9-4ff2-87ef-cc7ded32b92d
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -281,7 +281,7 @@ $config_directories = array(
  *   parameter. Functional code can use \Drupal::installProfile().
  */
 $settings['install_profile'] = 'standard';
-$settings['config_sync_directory'] = 'standard';
+$settings['config_sync_directory'] = '../sync/standard';
 
 /**
  * Salt for one-time login links, cancel links, form tokens, etc.
